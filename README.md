@@ -2,6 +2,10 @@
 ## DESCRIPTION
 It is my personal investment assistance program for US stocks.
 
+## LIBRARY
+* yfinance
+* financewebreader
+
 ## FUNCTIONS
 * **PORTFOLIO VISUALIZATION**
   * Visualize stock portfolio status
