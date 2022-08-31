@@ -3,8 +3,8 @@
 It is my personal investment assistance program for US stocks.
 
 ## LIBRARY
-* yfinance
-* financewebreader
+* yfinance 0.1.74 https://github.com/ranaroussi/yfinance
+* financewebreader https://github.com/financedata-org/FinanceDataReader
 
 ## FUNCTIONS
 * **PORTFOLIO VISUALIZATION**
