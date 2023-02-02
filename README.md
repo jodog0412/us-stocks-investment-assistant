@@ -7,19 +7,25 @@ It is my personal investment assistance program for US stocks.
 * financewebreader https://github.com/financedata-org/FinanceDataReader
 
 ## FUNCTIONS
-* **Create portfolio**  
-    
-  **`portfolio(sheet)`**         
+* **Create portfolio**    
+  You can analyze your portfolio. (your portfoliio data should be located in google drive.)    
+  
+  code: **`portfolio(sheet)`**      
+      
   ![portfoilo1](https://user-images.githubusercontent.com/83653380/186848008-12e78dff-3d52-4d26-837f-b981860ef601.png)    
-  **`portfolio(sheet).plot()`**        
+      
+  code: **`portfolio(sheet).plot()`**     
+      
   ![portfolio2](https://user-images.githubusercontent.com/83653380/186848103-3bf93e9b-192a-4c64-92c3-29f8b90acc4c.png)
 
 * **Search tickers**    
-  **`tickerSearch('NASDAQ','소프트웨어 및 IT서비스').download()`**        
-      
+  You can search tickers in NYSE, NASDAQ.    
+  
+  code: **`tickerSearch('NASDAQ','소프트웨어 및 IT서비스').download()`**    
+       
   ![ticker_search](https://user-images.githubusercontent.com/83653380/200852813-6c5e2024-7d1b-4d31-bcee-3be5e5a18c68.png)    
 * **Compare financials**    
-  **`financial_comparison(['AMZN','AAPL','KO','MSFT','GOOG','TSLA])`**        
+  **`financialCompare(['AMZN','AAPL','KO','MSFT','GOOG','TSLA])`**        
   ![FINANCIALS COMPARISON](https://user-images.githubusercontent.com/83653380/200853675-58b95519-4fab-454e-8cff-471d10db3bdf.png)
 
   
