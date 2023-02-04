@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 
 startdate='2022-01-01'
-enddate='2023-02-02'
+enddate='2023-02-04'
 
 from portfolio import portfolio
 from indexSearch import indexSearch
@@ -27,20 +27,21 @@ from financialCompare import revenueGrowthTable
 from financialCompare import cashflowTable
 
 ## 1. Create portfolio from csv
-portfolio_=portfolio()
-portfolio_.plot()
-portfolio_.calcProfit()
-print(portfolio_.pf)
+# portfolio_=portfolio()
+# portfolio_.plot()
+# portfolio_.calcProfit()
+# print(portfolio_.pf)
 
-## 2. Search Tickers
-tickerInit=tickerSearch('NYSE','커뮤니케이션 및 네트워킹')
-tickerSearched=tickerSearch.download(tickerInit,0.3)
+
+# 2. Search Tickers
+tickerInit=tickerSearch('NYSE','화학')
+tickerSearched=tickerSearch.download(tickerInit,0.5)
 print(tickerSearched)
 
-## 3. Compare Financials
+# 3. Compare Financials
 tickerDict={
     'SEARCH':tickerSearched.index,
-    'WATCH':['CLFD','ON','ONTO','RELL','META','EQNR','STEM','ANDE','UFPT','PERI']
+    'WATCH':['CLFD','STEM','GOOG','EQNR','ON','ONTO','FLEX','PERI','META','IMKTA','BCPC']
 }
 
 print(keyFinancialTable(tickerDict,'SEARCH'))

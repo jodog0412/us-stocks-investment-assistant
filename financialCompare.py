@@ -13,17 +13,23 @@ def keyFinancialTable(tickerDict, command):
         def return_(info, key):
             try: return info[key]
             except KeyError: return "NaN"
+        def divide_(info,key1,key2):
+            a=return_(info,key1)
+            b=return_(info,key2)
+            try: return a/b
+            except TypeError: return "NaN"
         info=yf.Ticker(ticker).info
         infoCustom=[return_(info,"trailingPE"), return_(info,"forwardPE"), return_(info,"priceToBook"),
-                    return_(info,"pegRatio"), return_(info,"returnOnEquity"),return_(info,"shortPercentOfFloat"),
-                    return_(info,"quickRatio")]
+                    divide_(info,'enterpriseValue','freeCashflow'),
+                    return_(info,"pegRatio"), return_(info,"returnOnEquity"),return_(info,"quickRatio")]
         return infoCustom
 
     financial=[getFinancial(ticker) for ticker in tqdm(tickers)]
     df=pd.DataFrame(data=financial,
                     index=tickers,
                     columns=['PER', 'FPER', 'PBR',
-                             'PEGR', 'ROE', 'short%', 'qRatio'])
+                            'PCR',
+                            'PEGR', 'ROE', 'qRatio'])
     df=df.sort_values('FPER',ascending=False)
     return df
 

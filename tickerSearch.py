@@ -5,7 +5,7 @@ import FinanceDataReader as fdr
 from tqdm import tqdm
 from indexSearch import indexSearch
 startdate='2022-01-01'
-enddate='2023-02-02'
+enddate='2023-02-04'
 
 index=indexSearch()
 nyse, ndq = index.nyse, index.ndq
