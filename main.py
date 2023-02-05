@@ -22,19 +22,20 @@ enddate='2023-02-04'
 from portfolio import portfolio
 from indexSearch import indexSearch
 from tickerSearch import tickerSearch
-from financialCompare import implement
+from financialCompare import financialCompare
 
-## 1. Create portfolio from csv
+# 1. Create portfolio from csv
 portfolio().implement(startdate,enddate)
 
 # 2. Search Tickers
-# tickerSearched=tickerSearch('NYSE','수도 유틸리티').download(0.2)
-# print(tickerSearched)
+searched=tickerSearch('NYSE','수도 유틸리티').download(0.2)
+print(searched)
 
-# # 3. Compare Financials
-# tickerDict={
-#     'SEARCH':tickerSearched.index,
-#     'WATCH':['CLFD','STEM','GOOG','EQNR','ON','ONTO','FLEX','PERI','META','IMKTA','CALM','CLH','CRAI']
-# }
+# 3. Compare Financials
+tickerDict={
+    # 'SEARCH':searched.index,
+    # 'WATCH':['CLFD','STEM','GOOG','EQNR','ON','ONTO','FLEX','PERI','META','IMKTA','CALM','CLH','CRAI']
+    'WATCH':['GOOG','AAPL','MSFT']
+}
 
-# implement(tickerDict,'WATCH')
+financialCompare(tickerDict,'WATCH').implement()
