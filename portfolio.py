@@ -7,8 +7,12 @@ startdate='2022-01-01'
 enddate='2023-01-01'
 
 class portfolio:
-    def __init__(self):
-        data=pd.read_csv('sheet1.csv')
+    def __init__(self,command):
+        self.command=command
+        if command=='PRIVATE':
+            data=pd.read_csv('private.csv')
+        elif command=='PUBLIC':
+            data=pd.read_csv('public.csv')
         data=data.sort_values(by="TICKER")
         self.pf=data
 
@@ -31,7 +35,7 @@ class portfolio:
         return(profit)
 
     def implement(self,startdate=startdate,enddate=enddate):
-        result=portfolio()
+        result=portfolio(self.command)
         print(result.pf)
         result.plot()
         print(result.calcProfit(startdate,enddate))

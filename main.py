@@ -25,7 +25,7 @@ from tickerSearch import tickerSearch
 from financialCompare import financialCompare
 
 # 1. Create portfolio from csv
-portfolio().implement(startdate,enddate)
+portfolio('PUBLIC').implement(startdate,enddate)
 
 # 2. Search Tickers
 searched=tickerSearch('NYSE','수도 유틸리티').download(0.2)
