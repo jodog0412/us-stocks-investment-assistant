@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import yfinance as yf
 
 startdate='2022-01-01'
-enddate='2023-02-02'
+enddate='2023-01-01'
 
 class portfolio:
     def __init__(self):
@@ -26,5 +26,12 @@ class portfolio:
         profit=(lastPrice/averPrice-1)*100
         profit=profit.sort_values(ascending=False)
         totalProfit=sum(profit.values)/len(profit.index)
-        print(f'totalProfit: {totalProfit:.2f}%')
+        print("\n[Stock yield]")
+        print(f'Total profit: {totalProfit:.2f}%')
         return(profit)
+
+    def implement(self,startdate=startdate,enddate=enddate):
+        result=portfolio()
+        print(result.pf)
+        result.plot()
+        print(result.calcProfit(startdate,enddate))

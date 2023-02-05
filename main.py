@@ -22,28 +22,19 @@ enddate='2023-02-04'
 from portfolio import portfolio
 from indexSearch import indexSearch
 from tickerSearch import tickerSearch
-from financialCompare import keyFinancialTable
-from financialCompare import revenueGrowthTable
-from financialCompare import cashflowTable
+from financialCompare import implement
 
 ## 1. Create portfolio from csv
-# portfolio_=portfolio()
-# portfolio_.plot()
-# portfolio_.calcProfit()
-# print(portfolio_.pf)
-
+portfolio().implement(startdate,enddate)
 
 # 2. Search Tickers
-tickerInit=tickerSearch('NYSE','화학')
-tickerSearched=tickerSearch.download(tickerInit,0.5)
-print(tickerSearched)
+# tickerSearched=tickerSearch('NYSE','수도 유틸리티').download(0.2)
+# print(tickerSearched)
 
-# 3. Compare Financials
-tickerDict={
-    'SEARCH':tickerSearched.index,
-    'WATCH':['CLFD','STEM','GOOG','EQNR','ON','ONTO','FLEX','PERI','META','IMKTA','BCPC']
-}
+# # 3. Compare Financials
+# tickerDict={
+#     'SEARCH':tickerSearched.index,
+#     'WATCH':['CLFD','STEM','GOOG','EQNR','ON','ONTO','FLEX','PERI','META','IMKTA','CALM','CLH','CRAI']
+# }
 
-print(keyFinancialTable(tickerDict,'SEARCH'))
-print(revenueGrowthTable(tickerDict['SEARCH']))
-print(cashflowTable(tickerDict['SEARCH']))
+# implement(tickerDict,'WATCH')

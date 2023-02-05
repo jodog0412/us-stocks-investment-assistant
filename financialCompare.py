@@ -3,12 +3,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-def keyFinancialTable(tickerDict, command):
-    if command=='SEARCH':
-        tickers=tickerDict['SEARCH']
-    else:
-        tickers=tickerDict['WATCH']
-
+def keyFinancialTable(tickers):
     def getFinancial(ticker):
         def return_(info, key):
             try: return info[key]
@@ -50,3 +45,8 @@ def cashflowTable(tickers):
         balance=balance.transpose().sort_index()
         flowDict[ticker]=balance
     return flowDict
+    
+def implement(tickerDict,command):
+    print(keyFinancialTable(tickerDict[command]))
+    print(revenueGrowthTable(tickerDict[command]))
+    print(cashflowTable(tickerDict[command]))
