@@ -13,7 +13,7 @@ It is an investment assistance program for US stocks.
     * tickerSearch
     * financialCompare
 * data
-    * sample.csv
+    * public.csv
     * nyse_tickers: tickers in NYSE index
     * nasdaq_tickers: tickers in NASDAQ index
     * sector_name.txt: name of sectors include stocks
