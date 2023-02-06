@@ -14,7 +14,7 @@ class tickerSearch:
     def __init__(self,index,sector):
         if index=='NYSE':
             data = dict(list(nyse.groupby('Industry')))
-        if index=='NASDAQ':
+        elif index=='NASDAQ':
             data = dict(list(ndq.groupby('Industry')))
         tickers=list(data[sector]['Symbol'].values)
         self.tickerFilt=[ticker for ticker in tqdm(tickers) if yf.download(ticker,progress=False).empty!=True]

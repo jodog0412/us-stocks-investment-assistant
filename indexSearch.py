@@ -12,6 +12,8 @@ class indexSearch:
         else:
             self.nyse=fdr.StockListing('NYSE')
             self.ndq=fdr.StockListing('NASDAQ')
+            self.nyse.to_csv('nyse_tickers')
+            self.ndq.to_csv('nasdaq_tickers')
 
     def sectorList(self):
         sectors=list(set(self.nyse['Industry'].values))
