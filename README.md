@@ -25,7 +25,7 @@ __`Analyze and visualize portfolio`__ (your portfoliio data(.csv) should be loca
     portfolio('PUBLIC').implement(startdate,enddate)
     ```
 * Result    
-    <img src="https://user-images.githubusercontent.com/83653380/219939860-be0563d7-7ba3-4ec7-b6c8-f3c0191ef036.png" width="40%" height="30%" title="portfolio visualization"></img>  
+    <img src="https://user-images.githubusercontent.com/83653380/219939860-be0563d7-7ba3-4ec7-b6c8-f3c0191ef036.png" width="60%" height="45%" title="portfolio visualization"></img>  
     <img src="https://user-images.githubusercontent.com/83653380/219939955-9aa6e67f-f515-454c-ae9f-05f77f5039e1.png" width="40%" height="30%" title="portfolio yield"></img>
 
 
