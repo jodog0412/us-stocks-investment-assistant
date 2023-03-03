@@ -1,11 +1,9 @@
-import numpy as np
 import pandas as pd
-import yfinance as yf
-import FinanceDataReader as fdr
-from tqdm import tqdm
 from indexSearch import indexSearch
+from yahooquery import Ticker
+
 startdate='2022-01-01'
-enddate='2023-02-04'
+enddate='2023-03-03'
 
 index=indexSearch()
 nyse, ndq = index.nyse, index.ndq
@@ -16,12 +14,15 @@ class tickerSearch:
             data = dict(list(nyse.groupby('Industry')))
         elif index=='NASDAQ':
             data = dict(list(ndq.groupby('Industry')))
-        tickers=list(data[sector]['Symbol'].values)
-        self.tickerFilt=[ticker for ticker in tqdm(tickers) if yf.download(ticker,progress=False).empty!=True]
+        self.tickers=list(data[sector]['Symbol'].values)
 
     def download(self,filterPercent=0.5):
-        tickers=self.tickerFilt
-        filterN=int(len(tickers)*filterPercent)
-        data=yf.download(tickers,start=startdate,end=enddate)
-        result=(data['Adj Close'].iloc[-1]/data['Adj Close'].iloc[0]-1).sort_values(ascending=False).dropna()
+        filterN=int(len(self.tickers)*filterPercent)
+        ticker=Ticker(self.tickers,asynchronous=True)
+        df=ticker.history(start=startdate,end=enddate)
+        df=list(df['adjclose'].groupby('symbol'))
+        keys, values = [key for key,value in df], [value for key,value in df]
+        func=lambda x:(x.values[-1]/x.values[0]-1)
+        data=list(map(func,values))
+        result=pd.Series(data=data,index=keys).sort_values(ascending=False).dropna()
         return result[:filterN]
