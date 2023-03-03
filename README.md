@@ -22,32 +22,31 @@ It is an investment assistance program for US stocks.
 __`Analyze and visualize portfolio`__ (your portfoliio data(.csv) should be located in the same folder with __`main.py`.__)     
 * Code
     ```python
-    portfolio_=portfolio()
-    portfolio_.plot()
-    portfolio_.calcProfit()
-    print(portfolio_.pf)
+    portfolio('PUBLIC').implement(startdate,enddate)
     ```
 * Result    
-    <img src="https://user-images.githubusercontent.com/83653380/186848103-3bf93e9b-192a-4c64-92c3-29f8b90acc4c.png" width="40%" height="30%" title="portfolio(sheet).plot()" alt="RubberDuck"></img>    
-    <img src="https://user-images.githubusercontent.com/83653380/186848008-12e78dff-3d52-4d26-837f-b981860ef601.png" width="40%" height="30%" title="print(portfolio_.pf)" alt="RubberDuck"></img>    
+    <img src="https://user-images.githubusercontent.com/83653380/219939860-be0563d7-7ba3-4ec7-b6c8-f3c0191ef036.png" width="60%" height="45%" title="portfolio visualization"></img>  
+    <img src="https://user-images.githubusercontent.com/83653380/219939955-9aa6e67f-f515-454c-ae9f-05f77f5039e1.png" width="40%" height="30%" title="portfolio yield"></img>
+
 
 ### 2. Search tickers    
 __`Search tickers`__ in NYSE, NASDAQ index. And __`calculate yield`__ of searched stocks.
 * Code    
     ```python
-    tickerInit=tickerSearch('NYSE','커뮤니케이션 및 네트워킹')
-    tickerSearched=tickerSearch.download(tickerInit,0.3)
-    print(tickerSearched)
+    searched=tickerSearch('NASDAQ','제약').download(filterPercent=0.1)
+    print(searched)
     ```
 * Result    
-    <img src="https://user-images.githubusercontent.com/83653380/216543150-71ffa6c7-b52c-49b4-a191-b9b83d5b0c94.png" width="20%" height="15%" title="tickerSearch" alt="RubberDuck"></img> 
+    <img src="https://user-images.githubusercontent.com/83653380/219940122-cb28f1fc-b7a8-4b63-b872-e76b55f9befa.png" width="40%" height="30%" title="tickerSearch"></img>
 
 ### 3. Compare financials    
 * Code
     ```python
-    print(keyFinancialTable(tickerDict,'SEARCH'))
-    print(revenueGrowthTable(tickerDict['SEARCH']))
-    print(cashflowTable(tickerDict['SEARCH']))
+    tickerDict={
+    'SEARCH':searched.index,
+    'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+    }
+    financialCompare(tickerDict,'SAMPLE').implement()
     ```
 * Result    
     <img src="https://user-images.githubusercontent.com/83653380/216545817-d34b8c51-4da2-4277-adf5-d3482781ca05.png" width="60%" height="45%" title="keyFinancial" alt="RubberDuck"></img>    
