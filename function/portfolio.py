@@ -10,9 +10,9 @@ class portfolio:
     def __init__(self,command):
         self.command=command
         if command=='PRIVATE':
-            data=pd.read_csv('private.csv')
+            data=pd.read_csv('./data/private.csv')
         elif command=='PUBLIC':
-            data=pd.read_csv('public.csv')
+            data=pd.read_csv('./data/public.csv')
         data=data.sort_values(by="TICKER")
         self.pf=data
 

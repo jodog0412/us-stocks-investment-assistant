@@ -8,18 +8,17 @@ enddate='2023-03-06'
 
 class indexSearch:
     def __init__(self):
-        if os.path.isfile('nyse_tickers') and os.path.isfile('nasdaq_tickers'):
-            self.nyse=pd.read_csv('nyse_tickers')
-            self.ndq=pd.read_csv('nasdaq_tickers')
+        if os.path.isfile('./data/nyse_tickers') and os.path.isfile('./data/nasdaq_tickers'):
+            self.nyse=pd.read_csv('./data/nyse_tickers')
+            self.ndq=pd.read_csv('./data/nasdaq_tickers')
         else:
             self.nyse=fdr.StockListing('NYSE')
             self.ndq=fdr.StockListing('NASDAQ')
-            self.nyse.to_csv('nyse_tickers')
-            self.ndq.to_csv('nasdaq_tickers')
+            self.nyse.to_csv('./data/nyse_tickers')
+            self.ndq.to_csv('./data/nasdaq_tickers')
 
     def returns(self):
-        nyse,ndq=self.nyse,self.ndq
-        return nyse,ndq
+        return self.nyse,self.ndq
     
     def sectorList(self):
         sectors=list(set(self.nyse['Industry'].values))
