@@ -10,25 +10,23 @@ Original file is located at
 """
 
 startdate='2022-01-01'
-enddate='2023-03-03'
+enddate='2023-03-06'
 
-from function.portfolio import portfolio
-from function.tickerSearch import tickerSearch
-from function.financialCompare import financialCompare
+import function
 
 # 1. Create portfolio from csv
-# portfolio('PRIVATE').implement(startdate,enddate)
+# function.portfolio('PUBLIC').implement(startdate,enddate)
 
-# 2. Search Tickers
-searched=tickerSearch('NASDAQ','전기 유틸리티').download(filterPercent=0.5)
+# # 2. Search Tickers
+searched=function.tickerSearch('NASDAQ','전기 유틸리티').download(filterPercent=0.5)
 print(searched)
 
-# 3. Compare Financials
+# # 3. Compare Financials
 tickerDict={
     'SEARCH':searched.index,
     'WATCH':['CLFD','STEM','GOOG','ONTO','PERI','META','APD','CLH','DE','CWEN','CEG'],
     'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
 }
 
-financialCompare(tickerDict,'WATCH').implement()
+function.financialCompare(tickerDict,'WATCH').implement()
 

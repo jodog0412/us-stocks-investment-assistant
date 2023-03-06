@@ -1,10 +1,8 @@
-import numpy as np
+startdate='2022-01-01'
+enddate='2023-03-06'
 import pandas as pd
 import matplotlib.pyplot as plt
-import yfinance as yf
-
-startdate='2022-01-01'
-enddate='2023-01-01'
+from yahooquery import Ticker
 
 class portfolio:
     def __init__(self,command):
@@ -16,26 +14,30 @@ class portfolio:
         data=data.sort_values(by="TICKER")
         self.pf=data
 
-    def plot(self):
+    def show(self):
+        print(self.pf)
         data=self.pf.sort_values(by="STOCK_QUANTITY",ascending=False)
-        pf_plt=plt.pie(data["STOCK_QUANTITY"],labels=data.loc[:,"TICKER"],
-                       autopct='%.1f%%',startangle=90)
+        plt.pie(data["STOCK_QUANTITY"],labels=data.loc[:,"TICKER"],autopct='%.1f%%',startangle=90)
         return(plt.show())
     
     def calcProfit(self,start=startdate,end=enddate):
-        ticker=self.pf.loc[:,"TICKER"].values
-        data=yf.download(list(ticker),start=start,end=end,progress=False)
-        lastPrice=data['Adj Close'].iloc[-1]
-        averPrice=(self.pf)['AVER_PRICE'].values.astype(float)
-        profit=(lastPrice/averPrice-1)*100
-        profit=profit.sort_values(ascending=False)
-        totalProfit=sum(profit.values)/len(profit.index)
+        portfolio=self.pf
+        buyPrice=portfolio.loc[:,'AVER_PRICE'].values
+        tickers=portfolio.loc[:,"TICKER"].values
+        tickerQ=Ticker(tickers,asynchronous=True)
+        history=tickerQ.history(start=startdate,end=enddate)
+        history=list(history['adjclose'].groupby('symbol'))
+        values = [value for key,value in history]
+        func=lambda x:(x.values[-1]) #Get lastPrice from data
+        lastPrice=list(map(func,values))
+        data=(lastPrice/buyPrice-1)*100
+        result=pd.Series(data=data,index=tickers).sort_values(ascending=False).dropna()
+        total=sum(result.values)/len(result.index)
         print("\n[Stock yield]")
-        print(f'Total profit: {totalProfit:.2f}%')
-        return(profit)
+        print(f'Total profit: {total:.2f}%')
+        return(result)
 
     def implement(self,startdate=startdate,enddate=enddate):
-        result=portfolio(self.command)
-        print(result.pf)
-        result.plot()
-        print(result.calcProfit(startdate,enddate))
+        data=portfolio(self.command)
+        data.show()
+        print(data.calcProfit(startdate,enddate))
