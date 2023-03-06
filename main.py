@@ -12,9 +12,9 @@ Original file is located at
 startdate='2022-01-01'
 enddate='2023-03-03'
 
-from portfolio import portfolio
-from tickerSearch import tickerSearch
-from financialCompare import financialCompare
+from function.portfolio import portfolio
+from function.tickerSearch import tickerSearch
+from function.financialCompare import financialCompare
 
 # 1. Create portfolio from csv
 # portfolio('PRIVATE').implement(startdate,enddate)
