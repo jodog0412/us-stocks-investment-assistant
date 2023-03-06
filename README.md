@@ -3,7 +3,7 @@
 It is an investment assistance program for US stocks.
 
 ## Reference
-* __`yfinance`__ https://github.com/ranaroussi/yfinance
+* __`yahooquery`__ https://yahooquery.dpguthrie.com/
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
 
 ## Component
