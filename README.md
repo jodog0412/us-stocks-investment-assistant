@@ -7,9 +7,8 @@ It is an investment assistance program for US stocks.
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
 
 ## Component
-* library
+* function
     * portfolio
-    * indexSearch
     * tickerSearch
     * financialCompare
 * data
