@@ -24,7 +24,9 @@ class portfolio:
         portfolio=self.portfolio
         buyPrice=portfolio.loc[:,'AVER_PRICE'].values
         tickers=portfolio.loc[:,"TICKER"].values
-        def getLastPrice(tickers):
+        stocknum=portfolio.loc[:,'STOCK_NUM'].values
+        stockqnt=portfolio.loc[:,'STOCK_QUANTITY'].values
+        def getPresentPrice(tickers):
             tickerQ=Ticker(tickers,asynchronous=True)
             histories=tickerQ.history(start=start,end=end)
             histories=list(histories['adjclose'].groupby('symbol'))
@@ -32,10 +34,11 @@ class portfolio:
             func=lambda x:(x.values[-1]) #Get lastPrice from data
             prices=list(map(func,history))
             return prices
-        lastPrice=getLastPrice(tickers)
-        data=(lastPrice/buyPrice-1)*100
+        PresentPrice=getPresentPrice(tickers)
+        data=(PresentPrice/buyPrice-1)*100
         result=pd.Series(data=data,index=tickers).sort_values(ascending=False).dropna()
         total=sum(result.values)/len(result.index)
+        total=stocknum.T@(PresentPrice-buyPrice)/sum(stockqnt)*100
         print("\n[Stock yield]")
         print(f'Total profit: {total:.2f}%')
         return(result)
