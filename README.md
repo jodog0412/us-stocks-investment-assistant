@@ -18,7 +18,7 @@ It is an investment assistance program for US stocks.
     * sector_name.txt: name of sectors include stocks
 ## Functions
 ### 1. Analyze portfolio    
-__`Analyze and visualize portfolio`__ (your portfoliio data(.csv) should be located in the same folder with __`main.py`.__)     
+__`Analyze and visualize portfolio`__    
 * Code
     ```python
     portfolio('PUBLIC').implement(startdate,enddate)
