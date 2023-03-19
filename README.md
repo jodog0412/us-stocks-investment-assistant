@@ -1,23 +1,24 @@
-# USIA(US STOCK INVESTMENT ASSISTANCE PROGRAM)
+# USIA(US STOCK INVESTMENT ASSISTANT)
 ## Description
 Python package for investment assistance.
 
 ## Reference
 * __`yahooquery`__ https://yahooquery.dpguthrie.com/
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
-* __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear
+* __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear (It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
 
 ## Architecture
+* main.py
 * default
-    * portfolio
-    * tickerSearch
-    * financialCompare
+    * portfolio.py
+    * tickerSearch.py
+    * financialCompare.py
 * predict  
-    * dataProcess
-    * dataset
-    * model
-    * train
-    * main
+    * dataProcess.py
+    * dataset.py
+    * model.py
+    * train.py
+    * main.py
 * data
     * public.csv
     * nyse_tickers: tickers in NYSE index
@@ -72,7 +73,8 @@ I selected `PER`, `Forward PER`, `PBR`, `marketcap`, `freecashflow`, `PEGR`, `RO
 So, I recommend don't use this for practical investment.__  
   
 Predict prices of your stock.    
-I use `LTSF-Linear`, long time series prediction deep-learning model, for stock price prediction.  
+I use `LTSF-Linear`, long time series prediction deep-learning model, for stock price prediction.    
+`LTSF-Linear` is SOTA for long-time series forecast.
 * Code
    ``` python    
    forecast_size=30
