@@ -8,16 +8,17 @@ Python package for investment assistance.
 * __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear (It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
 
 ## Architecture
+* main.py
 * default
-    * portfolio
-    * tickerSearch
-    * financialCompare
+    * portfolio.py
+    * tickerSearch.py
+    * financialCompare.py
 * predict  
-    * dataProcess
-    * dataset
-    * model
-    * train
-    * main
+    * dataProcess.py
+    * dataset.py
+    * model.py
+    * train.py
+    * main.py
 * data
     * public.csv
     * nyse_tickers: tickers in NYSE index
