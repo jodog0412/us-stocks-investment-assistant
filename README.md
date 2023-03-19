@@ -1,4 +1,4 @@
-# USIA(US STOCK INVESTMENT ASSISTANCE PROGRAM)
+# USIA(US STOCK INVESTMENT ASSISTANT)
 ## Description
 Python package for investment assistance.
 
