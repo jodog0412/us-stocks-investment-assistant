@@ -22,11 +22,6 @@ searched=default.tickerSearch('NYSE','전기 유틸리티').download(start,end,f
 print(searched)
 
 # 3. Compare Financials
-# tickerDict={
-    # 'SEARCH':searched.index,
-    # 'WATCH':['CLFD','STEM','GOOG','ONTO','PERI','META','APD','CLH','DE','CWEN','CEG'],
-    # 'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
-# }
 
 tickerDict={
     'SEARCH':searched.index,
