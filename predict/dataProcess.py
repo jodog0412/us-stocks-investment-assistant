@@ -37,7 +37,7 @@ class resultPlot():
         window_size=self.window_size
         forecast_size=self.forecast_size
         plt.figure(figsize=(20,5))
-        plt.plot(range(len-window_size,len),self.data[len-window_size:], label="real")
+        plt.plot(range(len-window_size,len),self.data[len-window_size:], label="Real")
         plt.plot(range(len-forecast_size,len), self.pred, label="LSTM-linear")
         plt.legend()
         plt.show()

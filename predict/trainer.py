@@ -22,7 +22,7 @@ class trainer():
         self.command=command
         self.optimizer=torch.optim.Adam(self.model.parameters(),lr=lr)
 
-    def train(self, epoch=60):
+    def train(self, epoch=50):
         self.model.train()
         progress=tqdm(range(epoch))
         losses=[]

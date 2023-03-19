@@ -12,14 +12,14 @@ Original file is located at
 start='2022-01-01'
 end='2023-03-19'
 
-import function
+import default
 
 # 1. Create portfolio from csv
-function.portfolio('PRIVATE',start,end).implement()
+# default.portfolio('PRIVATE',start,end).implement()
 
 # # 2. Search Tickers
-# searched=function.tickerSearch('NASDAQ','전기 유틸리티').download(start,end,filterPercent=0.5)
-# print(searched)
+searched=default.tickerSearch('NYSE','전기 유틸리티').download(start,end,filterPercent=0.2)
+print(searched)
 
 # 3. Compare Financials
 # tickerDict={
@@ -28,5 +28,9 @@ function.portfolio('PRIVATE',start,end).implement()
     # 'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
 # }
 
-# function.financialCompare(tickerDict,'WATCH').implement()
+tickerDict={
+    'SEARCH':searched.index,
+    'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+}
+default.financialCompare(tickerDict,'SAMPLE').implement()
 
