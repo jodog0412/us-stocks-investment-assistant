@@ -5,7 +5,8 @@ Python package for investment assistance.
 ## Reference
 * __`yahooquery`__ https://yahooquery.dpguthrie.com/
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
-* __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear (It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
+* __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear   
+(It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
 
 ## Architecture
 * main.py
