@@ -74,8 +74,7 @@ I selected `PER`, `Forward PER`, `PBR`, `marketcap`, `freecashflow`, `PEGR`, `RO
 So, I recommend don't use this for practical investment.__  
   
 Predict prices of your stock.    
-I use `LTSF-Linear`, long time series prediction deep-learning model, for stock price prediction.    
-`LTSF-Linear` is SOTA for long-time series forecast.
+I use `LTSF-Linear`, SOTA for long time series forecasting deep learning model, for stock price prediction.    
 * Code
    ``` python    
    forecast_size=30
