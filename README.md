@@ -92,7 +92,8 @@ I use `LTSF-Linear`, long time series prediction deep-learning model, for stock 
    ```  
 * Result  
    * `dataDownload('AAPL','2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226164168-b196bff1-cc7f-4d21-8539-78c8d432bd28.png" width="80%" height="60%" title="Good sample"></img>     
+  <img src="https://user-images.githubusercontent.com/83653380/226321478-52ec63c9-43a4-497e-8bcf-8bb8861d23e1.png" width="80%" height="60%" title="Good sample"></img>  
+
    * `dataDownload('TSLA,'2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226164571-1f43b651-dd44-4bce-a7dc-373b9db68a6c.png" width="80%" height="60%" title="Bad sample"></img> 
+  <img src="https://user-images.githubusercontent.com/83653380/226321213-4fc3270f-b680-409f-a9ba-a6dac42ec4a1.png" width="80%" height="60%" title="Bad sample"></img> 
 
