@@ -1,8 +1,6 @@
 # USIA(US STOCK INVESTMENT ASSISTANT)
 ## Description
 Python package for investment assistance.  
-__Analyze__ your portfolio. __Search__ good companies and companies' key financials.  
-Then, __predict__ stock price using deep-learning!
 
 ## Reference
 * __`yahooquery`__ https://yahooquery.dpguthrie.com/
