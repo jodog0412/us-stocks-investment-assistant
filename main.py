@@ -10,24 +10,25 @@ Original file is located at
 """
 
 start='2022-01-01'
-end='2023-03-19'
+end='2023-03-26'
 
 import default
-
 # 1. Create portfolio from csv
-default.portfolio('PRIVATE',start,end).implement()
+# default.portfolio('PRIVATE',start,end).implement()
 
 # 2. Search Tickers
-# searched=default.tickerSearch('NYSE','전기 유틸리티').download(start,end,filterPercent=0.2)
+# searched=default.tickerSearch('NASDAQ','식품 및 담배').download(start,end,filterPercent=0.5)
 # print(searched)
 
 # 3. Compare Financials
 
 # tickerDict={
-    # 'SEARCH':searched.index,
-    # 'WATCH':['CLFD','STEM','GOOG','ONTO','PERI','META','APD','CLH','DE','CWEN','CEG'],
-    # 'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+#     'SEARCH':searched.index,
+#     'WATCH':['CLFD','STEM','GOOG','ONTO','PERI','META','APD','CLH','DE','CWEN','CEG'],
+#     'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
 # }
 
-# default.financialCompare(tickerDict,'SAMPLE').implement()
+# default.financialCompare(tickerDict,'WATCH').implement()
+
+# 4. Predict prices
 
