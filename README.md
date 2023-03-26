@@ -1,6 +1,6 @@
 # USIA(US STOCK INVESTMENT ASSISTANT)
 ## Description
-Python package for investment assistance.
+Python package for investment assistance.  
 
 ## Reference
 * __`yahooquery`__ https://yahooquery.dpguthrie.com/
@@ -74,25 +74,25 @@ I selected `PER`, `Forward PER`, `PBR`, `marketcap`, `freecashflow`, `PEGR`, `RO
 So, I recommend don't use this for practical investment.__  
   
 Predict prices of your stock.    
-I use `LTSF-Linear`, long time series prediction deep-learning model, for stock price prediction.    
-`LTSF-Linear` is SOTA for long-time series forecast.
+I use `LTSF-Linear`, SOTA for long time series forecasting deep learning model, for stock price prediction.    
 * Code
    ``` python    
    forecast_size=30
    window_size=forecast_size*2
 
-   data=dataDownload('aapl','2y').returns()
+   date, data=dataDownload('aapl','2y').returns()
    data=dataProcess(data).transform()
    train=data[:-window_size,0]
    train_dataset=windowDataset(train,window_size,forecast_size)
    train_loader=DataLoader(train_dataset,batch_size=4)
    pred=trainer(train,train_loader=train_loader,window_size=window_size,forecast_size=forecast_size).implement()
    data =dataProcess(data).inverse_transform()
-   resultPlot(data=data,pred=pred,window_size=window_size,forecast_size=forecast_size).plot()
+   resultPlot(date,data,pred,window_size,forecast_size).plot()
    ```  
 * Result  
    * `dataDownload('AAPL','2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226164168-b196bff1-cc7f-4d21-8539-78c8d432bd28.png" width="80%" height="60%" title="Good sample"></img>     
+  <img src="https://user-images.githubusercontent.com/83653380/226321478-52ec63c9-43a4-497e-8bcf-8bb8861d23e1.png" width="80%" height="60%" title="Good sample"></img>  
+
    * `dataDownload('TSLA,'2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226164571-1f43b651-dd44-4bce-a7dc-373b9db68a6c.png" width="80%" height="60%" title="Bad sample"></img> 
+  <img src="https://user-images.githubusercontent.com/83653380/226321213-4fc3270f-b680-409f-a9ba-a6dac42ec4a1.png" width="80%" height="60%" title="Bad sample"></img> 
 
