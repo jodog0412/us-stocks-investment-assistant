@@ -3,7 +3,7 @@
 Python package for investment assistance.  
 
 ## Reference
-* __`yahooquery`__ https://yahooquery.dpguthrie.com/
+* __`yahooquery`__ API for yahoo finance  https://yahooquery.dpguthrie.com/
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
 * __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear   
 (It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
@@ -75,7 +75,7 @@ So, I recommend don't use this for practical investment.__
   
 Predict prices of your stock.    
 I use `LTSF-Linear`, SOTA for long time series forecasting deep learning model, for stock price prediction.    
-* Code
+* Code(`predict.py` in `prediction` folder)
    ``` python    
    forecast_size=30
    window_size=forecast_size*2
