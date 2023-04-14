@@ -12,20 +12,20 @@ Original file is located at
 start='2022-01-01'
 end='2023-04-13'
 
-import default
+import financial
 # 1. Create portfolio from csv
-default.portfolio('PRIVATE',start,end).implement()
+# default.portfolio('PRIVATE',start,end).implement()
 
 # 2. Search Tickers
 # searched=default.tickerSearch('NYSE','우라늄').download(start,end,filterPercent=0.5)
 # print(searched)
 
-# # 3. Compare Financials
-# tickerDict={
-#     'SEARCH':searched.index,
-#     'WATCH':['CLFD','STEM','GOOG','GFL','APD','CLH','DE','CWEN','OPCH'],
-#     'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
-# }
-# default.financialCompare(tickerDict,'WATCH').implement()
+# 3. Compare Financials
+tickerDict={
+    # 'SEARCH':searched.index,
+    'WATCH':['CLFD','STEM','GOOG','GFL','APD','CLH','DE','CWEN','OPCH'],
+    'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+}
+financial.financialCompare(tickerDict,'WATCH').implement()
 
 
