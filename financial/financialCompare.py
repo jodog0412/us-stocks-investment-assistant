@@ -4,16 +4,16 @@ import pandas as pd
 from tqdm import tqdm
 
 class financialCompare:
-    def __init__(self,tickerDict,command):
+    def __init__(self,tickerDict:dict,command:str):
         self.tickerDict=tickerDict
         self.command=command
         self.tickers=tickerDict[command]
-        self.qrTickers=Ticker(self.tickers, asynchronous=True)
+        self.ytickers=Ticker(self.tickers, asynchronous=True)
 
     def keyFinancialTable(self):
         keyList=['PER','FPER','PBR','marketcap','freecashflow','PEGR','ROE','cRatio']
-        financials=self.qrTickers.financial_data
-        valuations=self.qrTickers.valuation_measures
+        financials=self.ytickers.financial_data
+        valuations=self.ytickers.valuation_measures
 
         def financial(ticker,key):
             try: return financials[ticker][key]
@@ -40,7 +40,13 @@ class financialCompare:
         data=np.array([per,fper,pbr,marketcap,freecashflow,pegr,roe,currentR]).T
         result=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
         return result
-
+    
+    def revenueTable(self):
+        data=self.ytickers.earnings
+        earnings=[pd.DataFrame(data=data[i]['financialsChart']['quarterly']).drop('date',axis=1).T 
+                for i in self.tickers]
+        result=pd.concat(earnings,keys=self.tickers,names=["ticker","indicator"])
+        return result
     # def revenueGrowthTable(self):
     #     def getGrowth(ticker):
     #         data=ticker.earnings
@@ -62,5 +68,5 @@ class financialCompare:
     def implement(self):
         data=financialCompare(self.tickerDict,self.command)
         print(data.keyFinancialTable())
-        # print(data.revenueGrowthTable())
+        print(data.revenueTable())
         # print(data.cashflowTable())
