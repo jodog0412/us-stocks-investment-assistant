@@ -12,6 +12,8 @@ class financialCompare:
 
     def keyFinancialTable(self):
         keyList=['PER','FPER','PBR','marketcap','freecashflow','PEGR','ROE','cRatio']
+        valuation_key=('PeRatio','ForwardPeRatio','pbRatio','MarketCap','PegRatio')
+        financial_key=('freeCashflow','returnOnEquity','currentRatio')
         financials=self.ytickers.financial_data
         valuations=self.ytickers.valuation_measures
 
@@ -21,21 +23,19 @@ class financialCompare:
 
         def valuation(ticker,key):
             try: data=valuations.loc[ticker,key]
-            except (AttributeError,KeyError): return np.nan
+            except (AttributeError,KeyError): return np.nan #valuation doesn't return
             else: 
                 try: return data.dropna().values[-1]
-                except IndexError: return np.nan
-        #key로 valuation이 호출이 안될 때, valuation이 호출은 되나 nan일 때
-
-        per=[valuation(i,'PeRatio') for i in self.tickers]
-        fper=[valuation(i,'ForwardPeRatio') for i in self.tickers]
-        pbr=[valuation(i,'PbRatio') for i in self.tickers]
-        marketcap=[valuation(i,'MarketCap') for i in self.tickers]
-        freecashflow=[financial(i,'freeCashflow') for i in self.tickers]
-        # pcr=np.array(marketcap)/np.array(freecashflow)
-        pegr=[valuation(i,'PegRatio') for i in self.tickers]
-        roe=[financial(i,'returnOnEquity') for i in self.tickers]
-        currentR=[financial(i,'currentRatio') for i in self.tickers]
+                except IndexError: return np.nan # valuation returns nan.
+        
+        def financial_search(targets,tickers):
+            return [[financial(i,target) for i in tickers] for target in targets]
+        
+        def valuation_search(targets,tickers):
+            return [[valuation(i,target) for i in tickers] for target in targets]
+        
+        per,fper,pbr,marketcap,pegr=valuation_search(valuation_key,tickers=self.tickers)
+        freecashflow,roe,currentR=financial_search(financial_key,tickers=self.tickers)
 
         data=np.array([per,fper,pbr,marketcap,freecashflow,pegr,roe,currentR]).T
         result=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
@@ -47,14 +47,6 @@ class financialCompare:
                 for i in self.tickers]
         result=pd.concat(earnings,keys=self.tickers,names=["ticker","indicator"])
         return result
-    # def revenueGrowthTable(self):
-    #     def getGrowth(ticker):
-    #         data=ticker.earnings
-    #         tickerGrowth=[(data.iloc[i+1,0]-data.iloc[i,0])/data.iloc[i,0]*100 for i in range(3)]
-    #         return tickerGrowth
-    #     tickersGrowth=[getGrowth(ticker) for ticker in tqdm(self.yfTickers)]
-    #     result=pd.DataFrame(data=tickersGrowth,columns=self.tickers)
-    #     return result
 
     # def cashflowTable(self):
     #     def getCashflow(ticker):

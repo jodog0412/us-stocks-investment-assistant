@@ -23,22 +23,25 @@ class indexSearch:
         return sectors
 
 class tickerSearch():
-    def __init__(self,index,sector):
+    def __init__(self,index:str,sector:str):
         nyse,ndq=indexSearch().returns()
         if index=='NYSE':
             data = dict(list(nyse.groupby('Industry')))
         elif index=='NASDAQ':
             data = dict(list(ndq.groupby('Industry')))
-        else: raise Exception("Input is not matching for index.")
+        else: raise Exception("Index must be 'NYSE' or 'NASDAQ'")
         self.tickers=list(data[sector]['Symbol'].values)
 
-    def download(self,start,end,filterPercent=0.5):
-        filterN=int(len(self.tickers)*filterPercent)
-        ticker=Ticker(self.tickers,asynchronous=True)
-        df=list(ticker.history(start=start,end=end)['adjclose'].groupby('symbol'))
+    def download(self,start:str,end:str,filter_percent=0.5,filter_reverse=False):
+        filterN=int(len(self.tickers)*filter_percent)
+        tickers=Ticker(self.tickers,asynchronous=True)
+        df=list(tickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
         keys, values = [key for key,value in df], [value for key,value in df]
         func=lambda x:(x.values[-1]/x.values[0]-1) #Calculate profit of stocks
         data=list(map(func,values))
         result=pd.Series(data=data,index=keys).sort_values(ascending=False).dropna()
-        return result[:filterN]
+        if filter_reverse==False:
+            return result[:filterN]
+        else:
+            return result[filterN:]
     

@@ -14,20 +14,20 @@ end='2023-04-13'
 
 import financial
 # 1. Create portfolio from csv
-portfoilo=financial.portfolio('PRIVATE',start,end)
-portfoilo.implement()
+# portfoilo=financial.portfolio('PRIVATE',start,end)
+# portfoilo.implement()
 
 # 2. Search Tickers
-tickers=financial.tickerSearch('NYSE','우라늄').download(start,end,filterPercent=0.5)
-print(tickers)
+# tickers=financial.tickerSearch('NASDAQ','소프트웨어 및 IT서비스').download(start,end,filter_percent=0.1)
+# print(tickers)
 
 # 3. Compare Financials
 tickerDict={
-    'SEARCH':tickers.index,
-    'WATCH':['CLFD','STEM','GOOG','GFL','CLH','DE','CWEN','OPCH'],
+    # 'SEARCH':tickers.index,
+    'WATCH':['CLFD','STEM','GOOG','GFL','CLH','DE','CWEN','OPCH','ASUR'],
     'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM'],
-    'EX':['GOOG','CLFD','STEM']
+    'EX':['GOOG','CLFD','STEM','ASUR']
 }
-financial.financialCompare(tickerDict,'EX').implement()
+financial.financialCompare(tickerDict,'WATCH').implement()
 
 
