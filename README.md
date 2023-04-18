@@ -10,16 +10,10 @@ Python package for investment assistance.
 
 ## Architecture
 * main.py
-* default
+* financial
     * portfolio.py
     * tickerSearch.py
     * financialCompare.py
-* predict  
-    * dataProcess.py
-    * dataset.py
-    * model.py
-    * train.py
-    * main.py
 * data
     * public.csv
     * nyse_tickers: tickers in NYSE index
@@ -69,30 +63,4 @@ I selected `PER`, `Forward PER`, `PBR`, `marketcap`, `freecashflow`, `PEGR`, `RO
     <img src="https://user-images.githubusercontent.com/83653380/216546823-697aa88c-0cbf-4471-9f88-763d7d313612.png" width="60%" height="45%" title="revenueGrowth" alt="RubberDuck"></img>     
     <img src="https://user-images.githubusercontent.com/83653380/216546281-81f723c3-1606-48da-9a23-e05548eca4ce.png" width="60%" height="45%" title="cashflow" alt="RubberDuck"></img>     
 
-### 4. Predict prices(Alpha version)
->__This is alpha version, and the performance is unreliable.  
-So, I recommend don't use this for practical investment.__  
-  
-Predict prices of your stock.    
-I use `LTSF-Linear`, SOTA for long time series forecasting deep learning model, for stock price prediction.    
-* Code(`predict.py` in `prediction` folder)
-   ``` python    
-   forecast_size=30
-   window_size=forecast_size*2
-
-   date, data=dataDownload('aapl','2y').returns()
-   data=dataProcess(data).transform()
-   train=data[:-window_size,0]
-   train_dataset=windowDataset(train,window_size,forecast_size)
-   train_loader=DataLoader(train_dataset,batch_size=4)
-   pred=trainer(train,train_loader=train_loader,window_size=window_size,forecast_size=forecast_size).implement()
-   data =dataProcess(data).inverse_transform()
-   resultPlot(date,data,pred,window_size,forecast_size).plot()
-   ```  
-* Result  
-   * `dataDownload('AAPL','2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226321478-52ec63c9-43a4-497e-8bcf-8bb8861d23e1.png" width="80%" height="60%" title="Good sample"></img>  
-
-   * `dataDownload('TSLA,'2y')`  
-  <img src="https://user-images.githubusercontent.com/83653380/226321213-4fc3270f-b680-409f-a9ba-a6dac42ec4a1.png" width="80%" height="60%" title="Bad sample"></img> 
 
