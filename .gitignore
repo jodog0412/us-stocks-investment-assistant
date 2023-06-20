@@ -1,3 +1,5 @@
 private.csv
 temp.py
 main.py
+venv/
+pandas_datareader/

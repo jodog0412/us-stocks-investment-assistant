@@ -33,15 +33,22 @@ class tickerSearch():
         self.tickers=list(data[sector]['Symbol'].values)
 
     def download(self,start:str,end:str,filter_percent=0.5,filter_reverse=False):
-        filterN=int(len(self.tickers)*filter_percent)
+        boundary=int(len(self.tickers)*filter_percent)
+        def dataframe_view(dataframe):
+            '''1. seperate key and price'''
+            keys, values = [key for key,value in dataframe], [value for key,value in dataframe]
+            '''2. calculate profit percentage for stock'''
+            func=lambda x:(x.values[-1]/x.values[0]-1) 
+            data=list(map(func,values))
+            '''3. Sort tickers by profit'''
+            result=pd.Series(data=data,index=keys).sort_values(ascending=False).dropna()
+            return result
+        
         tickers=Ticker(self.tickers,asynchronous=True)
-        df=list(tickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
-        keys, values = [key for key,value in df], [value for key,value in df]
-        func=lambda x:(x.values[-1]/x.values[0]-1) #Calculate profit of stocks
-        data=list(map(func,values))
-        result=pd.Series(data=data,index=keys).sort_values(ascending=False).dropna()
+        datafrm=list(tickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
+        result=dataframe_view(datafrm)
+        
         if filter_reverse==False:
-            return result[:filterN]
+            return result[:boundary]
         else:
-            return result[filterN:]
-    
+            return result[boundary:]

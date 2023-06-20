@@ -1,3 +1,3 @@
 from .portfolio import portfolio
-from .financialCompare import financialCompare
-from .tickerSearch import tickerSearch
+from .financial_statement import financialCompare
+from .ticker_search import tickerSearch

@@ -10,7 +10,7 @@ class financialCompare:
         self.tickers=tickerDict[command]
         self.ytickers=Ticker(self.tickers, asynchronous=True)
 
-    def keyFinancialTable(self):
+    def keyFinancialTable(self,filter=True):
         keyList=['PER','FPER','PBR','marketcap','freecashflow','PEGR','ROE','cRatio']
         valuation_key=('PeRatio','ForwardPeRatio','pbRatio','MarketCap','PegRatio')
         financial_key=('freeCashflow','returnOnEquity','currentRatio')
@@ -38,8 +38,12 @@ class financialCompare:
         freecashflow,roe,currentR=financial_search(financial_key,tickers=self.tickers)
 
         data=np.array([per,fper,pbr,marketcap,freecashflow,pegr,roe,currentR]).T
-        result=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
-        return result
+        datafrm=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
+        
+        if filter==False:
+            return datafrm
+        else: 
+            return datafrm.loc[(datafrm['PER']>datafrm['FPER'])]
     
     def revenueTable(self):
         data=self.ytickers.earnings
@@ -59,6 +63,9 @@ class financialCompare:
 
     def implement(self):
         data=financialCompare(self.tickerDict,self.command)
-        print(data.keyFinancialTable())
+        if self.command=='WATCH':
+            print(data.keyFinancialTable(filter=False))
+        else:
+            print(data.keyFinancialTable())
         print(data.revenueTable())
         # print(data.cashflowTable())

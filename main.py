@@ -9,25 +9,26 @@ Original file is located at
 # 1. Environment&Import
 """
 
-start='2022-01-01'
-end='2023-04-13'
+start='2023-01-01'
+end='2023-06-20'
 
 import financial
-# 1. Create portfolio from csv
-# portfoilo=financial.portfolio('PRIVATE',start,end)
-# portfoilo.implement()
+"""1. Create portfolio from csv"""
+path="data\private.csv"
+portfoilo=financial.portfolio(path,start,end)
+portfoilo.implement()
 
-# 2. Search Tickers
-# tickers=financial.tickerSearch('NASDAQ','소프트웨어 및 IT서비스').download(start,end,filter_percent=0.1)
-# print(tickers)
+"""2. Search Tickers"""
+tickers=financial.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=1)
+print(tickers)
 
-# 3. Compare Financials
-tickerDict={
-    # 'SEARCH':tickers.index,
-    'WATCH':['CLFD','STEM','GOOG','GFL','CLH','DE','CWEN','OPCH','ASUR'],
-    'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM'],
-    'EX':['GOOG','CLFD','STEM','ASUR']
-}
-financial.financialCompare(tickerDict,'WATCH').implement()
-
+"""3. Compare Financials"""
+#dictionary를 financialCompare에 넣고, main.py에는 dictionary에 ticker를 추가하는 함수를 사용.
+# tickerDict={
+#     'SEARCH':tickers.index,
+#     'WATCH':['PANW','AMZN','RCM','STEM','WDAY','OMCL'],
+#     'SAMPLE':['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+# }
+# result=financial.financialCompare(tickerDict,'SEARCH').keyFinancialTable()
+# print(result)
 
