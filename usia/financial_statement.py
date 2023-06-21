@@ -1,16 +1,13 @@
 from yahooquery import Ticker
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
 
 class financialCompare:
-    def __init__(self,tickerDict:dict,command:str):
-        self.tickerDict=tickerDict
-        self.command=command
-        self.tickers=tickerDict[command]
+    def __init__(self,tickers:list):
+        self.tickers=tickers
         self.ytickers=Ticker(self.tickers, asynchronous=True)
 
-    def keyFinancialTable(self,filter=True):
+    def keyFinancialTable(self):
         keyList=['PER','FPER','PBR','marketcap','freecashflow','PEGR','ROE','cRatio']
         valuation_key=('PeRatio','ForwardPeRatio','pbRatio','MarketCap','PegRatio')
         financial_key=('freeCashflow','returnOnEquity','currentRatio')
@@ -40,10 +37,8 @@ class financialCompare:
         data=np.array([per,fper,pbr,marketcap,freecashflow,pegr,roe,currentR]).T
         datafrm=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
         
-        if filter==False:
-            return datafrm
-        else: 
-            return datafrm.loc[(datafrm['PER']>datafrm['FPER'])]
+        '''Return stock tickers if TPER>FPER'''
+        return datafrm.loc[(datafrm['PER']>datafrm['FPER'])]
     
     def revenueTable(self):
         data=self.ytickers.earnings
@@ -62,10 +57,7 @@ class financialCompare:
     #     return dict(zip(self.tickers,tickersflow))
 
     def implement(self):
-        data=financialCompare(self.tickerDict,self.command)
-        if self.command=='WATCH':
-            print(data.keyFinancialTable(filter=False))
-        else:
-            print(data.keyFinancialTable())
+        data=financialCompare(self.tickers)
+        print(data.keyFinancialTable())
         print(data.revenueTable())
         # print(data.cashflowTable())

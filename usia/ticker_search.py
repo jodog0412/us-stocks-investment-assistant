@@ -33,7 +33,6 @@ class tickerSearch():
         self.tickers=list(data[sector]['Symbol'].values)
 
     def download(self,start:str,end:str,filter_percent=0.5,filter_reverse=False):
-        boundary=int(len(self.tickers)*filter_percent)
         def dataframe_view(dataframe):
             '''1. seperate key and price'''
             keys, values = [key for key,value in dataframe], [value for key,value in dataframe]
@@ -43,6 +42,7 @@ class tickerSearch():
             '''3. Sort tickers by profit'''
             result=pd.Series(data=data,index=keys).sort_values(ascending=False).dropna()
             return result
+        boundary=int(len(self.tickers)*filter_percent)
         
         tickers=Ticker(self.tickers,asynchronous=True)
         datafrm=list(tickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
