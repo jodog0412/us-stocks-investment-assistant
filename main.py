@@ -8,24 +8,23 @@ Original file is located at
 
 # 1. Environment&Import
 """
-
+import usia
 start='2023-01-01'
 end='2023-06-20'
 
-import usia
-
 """1. Create portfolio from csv"""
-path="data\private.csv"
-portfoilo=usia.portfolio(path,start,end)
-portfoilo.implement()
+# path="data\public.csv"
+# portfoilo=usia.portfolio(path,start,end)
+# portfoilo.implement()
 
 """2. Search Tickers"""
-searched=usia.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=1)
-print(searched)
+# searched=usia.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=0.1)
+# print(searched)
 
 """3. Compare Financials"""
-tickers=searched.index
+# tickers=searched.index
 watchlist=['PANW','AMZN','RCM','STEM']
-result=usia.financialCompare(watchlist).keyFinancialTable()
+sample=['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
+result=usia.financialCompare(sample).keyFinancialTable()
 print(result)
 
