@@ -5,17 +5,14 @@ Python package for investment assistance.
 ## Reference
 * __`yahooquery`__ API for yahoo finance  https://yahooquery.dpguthrie.com/
 * __`financewebreader`__ https://github.com/financedata-org/FinanceDataReader
-* __`LTSF-Linear`__ https://github.com/cure-lab/LTSF-Linear   
-(It is the model from the paper ["Are Transformers Effective for Time Series Forecasting?"](https://arxiv.org/abs/2205.13504, "arxiv"))
 
 ## Architecture
 * main.py
-* financial
+* usia
     * portfolio.py
-    * tickerSearch.py
-    * financialCompare.py
+    * ticker_serach.py
+    * financial_statement.py
 * data
-    * public.csv
     * nyse_tickers: tickers in NYSE index
     * nasdaq_tickers: tickers in NASDAQ index
     * sector_name.txt: name of sectors include stocks
@@ -25,10 +22,14 @@ __Visualize__ your portfolio.
 And __calculate average yield__ of your portfolio's stocks.
 * Code
     ```python
-    import function
-    start='2022-01-01'
-    end='2023-03-19'
-    function.portfolio('PRIVATE',start,end).implement()
+    import usia
+    start='2023-01-01'
+    end='2023-06-20'
+      
+    """1. Create portfolio from csv"""
+    path="data\public.csv"
+    portfoilo=usia.portfolio(path,start,end)
+    portfoilo.implement()
     ```
 * Result    
     <img src="https://user-images.githubusercontent.com/83653380/219939860-be0563d7-7ba3-4ec7-b6c8-f3c0191ef036.png" width="60%" height="45%" title="portfolio visualization"></img>  
@@ -40,11 +41,10 @@ __Search tickers__ in NYSE, NASDAQ index.
 And __calculate yield__ of searched stocks.
 * Code    
     ```python
-    searched=function.tickerSearch('NYSE','전기 유틸리티').download(start,end,filterPercent=0.2)
+    searched=usia.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=0.5)
     print(searched)
     ```
 * Result    
-
     <img src="https://user-images.githubusercontent.com/83653380/226162455-b1c6377a-2636-4d91-8099-07d7bc7f9d95.png" width="20%" height="10%" title="tickerSearch"></img>
 
 ### 3. Compare financials  
