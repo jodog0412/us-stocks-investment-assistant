@@ -16,13 +16,12 @@ end='2023-06-20'
 # path="data\public.csv"
 # portfoilo=usia.portfolio(path,start,end)
 # portfoilo.implement()
-
 """2. Search Tickers"""
 # searched=usia.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=0.1)
 # print(searched)
+# tickers=searched.index
 
 """3. Compare Financials"""
-# tickers=searched.index
 watchlist=['PANW','AMZN','RCM','STEM']
 sample=['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
 result=usia.financialCompare(sample).keyFinancialTable()

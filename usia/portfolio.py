@@ -34,6 +34,7 @@ class portfolio:
         present_price=get_present_price(tickers,self.start,self.end)
         profit=(present_price/buy_price-1)*100
         each=pd.Series(data=profit,index=tickers).sort_values(ascending=False).dropna()
+        each=round(each,2)
         total=stocknum.T@(present_price-buy_price)/sum(stockqnt)*100
         return(each, total)
     

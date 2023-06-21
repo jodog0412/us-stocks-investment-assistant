@@ -38,7 +38,7 @@ class financialCompare:
         datafrm=pd.DataFrame(data=data,index=self.tickers,columns=keyList).sort_values(by='FPER',ascending=False)
         
         '''Return stock tickers if TPER>FPER'''
-        return datafrm.loc[(datafrm['PER']>datafrm['FPER'])]
+        return round(datafrm.loc[(datafrm['PER']>datafrm['FPER'])],2)
     
     def revenueTable(self):
         data=self.ytickers.earnings

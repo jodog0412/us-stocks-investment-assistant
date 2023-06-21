@@ -46,7 +46,7 @@ class tickerSearch():
         
         tickers=Ticker(self.tickers,asynchronous=True)
         datafrm=list(tickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
-        result=dataframe_view(datafrm)
+        result=round(dataframe_view(datafrm),2)
         
         if filter_reverse==False:
             return result[:boundary]
