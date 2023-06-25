@@ -1,6 +1,7 @@
 from yahooquery import Ticker
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class financialCompare:
     def __init__(self,tickers:list):
@@ -46,7 +47,19 @@ class financialCompare:
                 for i in self.tickers]
         result=pd.concat(earnings,keys=self.tickers,names=["ticker","indicator"])
         return result
-
+    
+    def plot(self,start,end):
+        length=len(self.tickers)
+        histories=list(self.ytickers.history(start=start,end=end)['adjclose'].groupby('symbol'))
+        fig,axs=plt.subplots(length//2+length%2,2)
+        fig.tight_layout()
+        for index in range(len(self.tickers)):
+            ticker=histories[index][1].index[0][0]
+            cur_axis=axs[index//2,index%2]
+            cur_axis.plot(histories[index][1][ticker])
+            cur_axis.set_title(ticker)
+        return plt.show()
+    
     # def cashflowTable(self):
     #     def getCashflow(ticker):
     #         tickerflow=ticker.cashflow.loc[['Operating Cash Flow','Financing Cash Flow','Investing Cash Flow']]

@@ -17,13 +17,13 @@ end='2023-06-20'
 # portfoilo=usia.portfolio(path,start,end)
 # portfoilo.implement()
 """2. Search Tickers"""
-# searched=usia.tickerSearch('NASDAQ','헬스케어 장비 및 용품').download(start,end,filter_percent=0.1)
+# searched=usia.tickerSearch('NYSE','제약').download(start,end,filter_percent=1.0)
 # print(searched)
-# tickers=searched.index
+# searched_ticker=searched.index
 
 """3. Compare Financials"""
-watchlist=['PANW','AMZN','RCM','STEM']
+watchlist=['PANW','USPH','RCM','OESX']
 sample=['AAPL','F','DIS','AMZN','KO','GOOG','XOM']
-result=usia.financialCompare(sample).keyFinancialTable()
+result=usia.financialCompare(watchlist).keyFinancialTable()
+usia.financialCompare(watchlist).plot(start,end)
 print(result)
-
